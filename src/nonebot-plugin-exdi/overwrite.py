@@ -25,7 +25,6 @@ from nonebot.rule import TrieRule
 from nonebot import logger
 
 from exceptiongroup import catch
-from typing import Any
 import anyio
 
 from .baseparams import DiBaseParamsManager

@@ -4,7 +4,6 @@ from typing import Any, Callable, TypeVar, cast
 from typing_extensions import override
 from nonebot.utils import run_coro_with_shield
 from nonebot.compat import ModelField
-from nonebot.exception import TypeMisMatch
 import anyio
 import asyncio
 

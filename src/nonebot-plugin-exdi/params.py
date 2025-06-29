@@ -1,6 +1,7 @@
 from nonebot.dependencies import Param
 
-from typing import Any, override, Self
+from typing import Any, Self
+from typing_extensions import override
 import inspect
 
 class ManualParam(Param):
