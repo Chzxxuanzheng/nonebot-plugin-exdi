@@ -12,6 +12,7 @@ __plugin_meta__ = PluginMetadata(
 		'装饰函数: `@di()`\n'
 	),
 	config=Config,
+	homepage="https://github.com/Chzxxuanzheng/nonebot-plugin-exdi",
     type="library",
     supported_adapters=None,
 )
