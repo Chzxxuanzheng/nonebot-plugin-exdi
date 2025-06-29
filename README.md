@@ -84,6 +84,9 @@ async def my_func1(bot: Bot, matcher: Matcher, arg: Message = CommandArg()):
 	await matcher.send(f'你的bot是:{bot}')
 	await matcher.send(f'收到的参数是:{arg}')
 ```
+运行结果:
+
+![结果](https://github.com/Chzxxuanzheng/nonebot-plugin-exdi/blob/master/resources/img1.png?raw=true)
 </details>
 
 <details open>
@@ -125,6 +128,9 @@ def my_func2(d1: depend1, classDepend: classDepend, d2: str = depend2):
 	yield f'depend1: {d1}, depend2: {d2}'
 	yield f'classDepend: {classDepend}'
 ```
+运行结果:
+
+![结果](https://github.com/Chzxxuanzheng/nonebot-plugin-exdi/blob/master/resources/img2.png?raw=true)
 </details>
 
 <details open>
@@ -144,12 +150,16 @@ async def my_func3(matcher: Matcher, arg1: str, arg2: str = 'defaultValue'):
 	await matcher.send(f'arg1: {arg1}')
 	await matcher.send(f'arg2: {arg2}')
 ```
+运行结果:
+
+![结果](https://github.com/Chzxxuanzheng/nonebot-plugin-exdi/blob/master/resources/img3.png?raw=true)
 </details>
-* 注意,通常情况下不支持生成器依赖,同时不和matcher共用缓存。这是由于nonebot不对外暴漏`dependency_cache`和`stack`,缓存需要`dependency_cache`,生成器依赖需要`stack`。如果有需要请参考下面的`重写NoneBot`。 *
+
+**注意,通常情况下不支持生成器依赖,同时不和matcher共用缓存。这是由于nonebot不对外暴漏`dependency_cache`和`stack`,缓存需要`dependency_cache`,生成器依赖需要`stack`。如果有需要请参考下面的`重写NoneBot`。**
 
 ### 重写NoneBot
 
-搞清楚你在做什么后再继续往下看,如果你*不了解nonebot的运作规律,请勿使用该项*
+搞清楚你在做什么后再继续往下看,如果你**不了解nonebot的运作规律,请勿使用该项**
 
 如果想要更好的运行效果,必须要重写`nonebot.message.handle_event`函数来获取`dependency_cache`和`stack`。重写该函数后不再需要`init_di`来初始化依赖注入。
 
@@ -186,4 +196,5 @@ DiBaseParamsManager的模型设计
 
 ## 结尾
 readme模板来自[A-kirami](https://github.com/A-kirami/nonebot-plugin-template/)
+
 这是萌新的第一个插件,异步学的有限...有问题,大佬不要骂了,欢迎提issue
