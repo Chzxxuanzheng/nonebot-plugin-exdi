@@ -63,6 +63,8 @@ class ExDependent(Dependent[R]):
 
 	@override
 	async def solve(self, **params: Any) -> tuple[dict[str, Any], dict[str, Exception]]: # type: ignore
+		await self.check(**params)
+
 		# solve parameterless
 		for param in self.parameterless:
 			await param._solve(**params)
