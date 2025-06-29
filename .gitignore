@@ -1,0 +1,7 @@
+.pdm.toml
+.venv
+dist
+build
+
+__pypackages__
+**/__pycache__

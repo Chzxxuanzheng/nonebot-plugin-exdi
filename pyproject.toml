@@ -1,0 +1,19 @@
+[project]
+name = "nonebot-plugin-exdi"
+version = "0.1.0"
+description = "依赖注入扩展,允许对非handle函数进行依赖注入"
+authors = [
+    {name = "Mr.Lee", email = "chzxxuanzheng@gmail.com"},
+]
+dependencies = [
+    "nonebot2>=2.4.2",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "GPLv3"}
+
+[tool.pdm]
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"
