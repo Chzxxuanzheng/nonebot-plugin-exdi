@@ -19,6 +19,8 @@ __plugin_meta__ = PluginMetadata(
 
 from .di import di as di
 from .baseparams import init_di as init_di, DiBaseParamsManager as DiBaseParamsManager
+from .overwrite import overwrite_handle_event as overwrite_handle_event, overwrite_check as overwrite_check
 
 if config.isOverwrite():
-	from .overwrite import handle_event as _
+	overwrite_check()
+	overwrite_handle_event()
