@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-exdi"
-version = "0.1.3"
+version = "0.1.4"
 description = "依赖注入扩展,允许对非handle函数进行依赖注入"
 authors = [
     {name = "Mr.Lee", email = "chzxxuanzheng@gmail.com"},
