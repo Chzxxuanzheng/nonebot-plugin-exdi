@@ -19,8 +19,8 @@ ALLOW_PARAMS_TYPES: tuple[Type[Param], ...] = (  # noqa: UP006
 	StateParam,
 	ArgParam,
 	MatcherParam,
-	DefaultParam,
 	ManualParam,
+	DefaultParam,
 )
 
 def di(parameterless: Iterable = []) -> T_Decorator[Any]:
