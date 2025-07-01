@@ -4,7 +4,8 @@ from nonebot.params import (
 	ArgParam, MatcherParam, DefaultParam
 )
 
-from typing import Callable, Any, TypeVar, Iterable, Type, TypeAlias
+from typing import Callable, Any, TypeVar, Iterable, Type
+from typing_extensions import TypeAlias
 from .dependent import ExDependent
 from .params import ManualParam
 

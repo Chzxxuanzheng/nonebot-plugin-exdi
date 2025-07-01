@@ -30,7 +30,7 @@ def overwrite_handle_event() -> None:
 	from nonebot.rule import TrieRule
 	from nonebot import logger
 
-	from exceptiongroup import catch
+	from exceptiongroup import catch, BaseExceptionGroup
 	import anyio
 
 	from .baseparams import DiBaseParamsManager

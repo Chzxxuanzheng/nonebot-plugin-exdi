@@ -5,11 +5,11 @@ from nonebot.params import Depends
 
 from contextvars import ContextVar
 from contextlib import AsyncExitStack
-from typing import Any
+from typing import Any, Optional
 
 from .config import config
 
-current_di_base_params: ContextVar[dict[str, Any]|None] = ContextVar('current_di_base_params', default=None)
+current_di_base_params: ContextVar[Optional[dict[str, Any]]] = ContextVar('current_di_base_params', default=None)
 
 async def _init_di(bot: Bot, event: Event, state: T_State) -> None:
 	if config.isOverwrite():
@@ -31,8 +31,8 @@ class DiBaseParamsManager:
 	""" 依赖注入的基本参数类
 	用于重写handle_event时获取stack和dependence_caches
 	不需要重写handle_event时请勿动 """
-	bot: Bot|None
-	event: Event|None
+	bot: Bot
+	event: Event
 	state: T_State
 	stack: AsyncExitStack
 	dependency_cache: T_DependencyCache

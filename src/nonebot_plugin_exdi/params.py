@@ -1,7 +1,7 @@
 from nonebot.dependencies import Param
 
-from typing import Any, Self
-from typing_extensions import override
+from typing import Any, Optional
+from typing_extensions import override, Self
 import inspect
 
 class ManualParam(Param):
@@ -16,7 +16,7 @@ class ManualParam(Param):
 	@override
 	def _check_param(
 		cls, param: inspect.Parameter, allow_types: tuple[type[Param], ...]
-	) -> Self|None:
+	) -> Optional[Self]:
 		if param.default == param.empty:
 			return cls()
 
