@@ -157,10 +157,11 @@ async def my_func3(matcher: Matcher, arg1: str, arg2: str = 'defaultValue'):
 
 **注意,通常情况下不支持生成器依赖,同时不和matcher共用缓存。这是由于nonebot不对外暴漏`dependency_cache`和`stack`,缓存需要`dependency_cache`,生成器依赖需要`stack`。如果有需要请参考下面的`重写NoneBot`。**
 
-### 重写NoneBot
+### 重写NoneBot事件发布函数
 
 搞清楚你在做什么后再继续往下看,如果你**不了解nonebot的运作规律,请勿使用该项**
 
+<details>
 如果想要更好的运行效果,必须要重写`nonebot.message.handle_event`函数来获取`dependency_cache`和`stack`。重写该函数后不再需要`init_di`来初始化依赖注入。
 
 | 配置项 | 必填 | 默认值 | 说明 |
@@ -193,6 +194,8 @@ DiBaseParamsManager的模型设计
 |dependency_cache|dependency_cache|
 
 完成重写后,你可以把`exdi_overwrite_nb`设置为`False`,把`exdi_hand_overwrite`设置为`True`。此时插件不会尝试重写`handle_event`,但同时会按照重写过`handle_event`的逻辑运行
+</details>
+
 
 ## 结尾
 readme模板来自[A-kirami](https://github.com/A-kirami/nonebot-plugin-template/)
