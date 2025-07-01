@@ -155,23 +155,23 @@ async def my_func3(matcher: Matcher, arg1: str, arg2: str = 'defaultValue'):
 ![结果](https://github.com/Chzxxuanzheng/nonebot-plugin-exdi/blob/master/resources/img3.png?raw=true)
 </details>
 
-**注意,通常情况下不支持生成器依赖,同时不和matcher共用缓存。这是由于nonebot不对外暴漏`dependency_cache`和`stack`,缓存需要`dependency_cache`,生成器依赖需要`stack`。如果有需要请参考下面的`重写NoneBot`。**
+**注意,通常情况下不支持生成器依赖,同时不和matcher共用缓存。这是由于nonebot不对外暴漏`dependency_cache`和`stack`,缓存需要`dependency_cache`,生成器依赖需要`stack`。如果有需要请参考下面的`覆盖NoneBot`。**
 
-### 重写NoneBot事件发布函数
+### 覆盖NoneBot事件发布函数
 
 搞清楚你在做什么后再继续往下看,如果你**不了解nonebot的运作规律,请勿使用该项**
 
 <details>
-如果想要更好的运行效果,必须要重写`nonebot.message.handle_event`函数来获取`dependency_cache`和`stack`。重写该函数后不再需要`init_di`来初始化依赖注入。
+如果想要更好的运行效果,必须要覆盖`nonebot.message.handle_event`函数来获取`dependency_cache`和`stack`。覆盖该函数后不再需要`init_di`来初始化依赖注入。
 
 | 配置项 | 必填 | 默认值 | 说明 |
 |:-----:|:----:|:----:|:----:|
-| exdi_overwrite_nb | 否 | False | 重写`nonebot`的`nonebot.message.handle_event`函数 |
-| exdi_hand_overwrite | 否 | False | 你手动重写`nonebot.message.handle_event`函数 |
+| exdi_overwrite_nb | 否 | False | 覆盖`nonebot`的`nonebot.message.handle_event`函数 |
+| exdi_hand_overwrite | 否 | False | 你手动覆盖`nonebot.message.handle_event`函数 |
 
 你可以通过设置`exdi_overwrite_nb`为`True`来让插件自己覆盖`handle_event`,但注意的是插件需要在
 
-你也可以自己手动重写`handle_event`,并且符合一下要求:
+你也可以自己手动覆盖`handle_event`,并且符合一下要求:
 
 将原handle_event处创建stack的代码
 ```python
@@ -193,7 +193,9 @@ DiBaseParamsManager的模型设计
 |stack|stack|
 |dependency_cache|dependency_cache|
 
-完成重写后,你可以把`exdi_overwrite_nb`设置为`False`,把`exdi_hand_overwrite`设置为`True`。此时插件不会尝试重写`handle_event`,但同时会按照重写过`handle_event`的逻辑运行
+完成覆盖后,你可以把`exdi_overwrite_nb`设置为`False`,把`exdi_hand_overwrite`设置为`True`。此时插件不会尝试覆盖`handle_event`,但同时会按照覆盖过`handle_event`的逻辑运行
+
+你可以通过 `overwrite_check` 函数来检测当前是否适合进覆盖。该函数会检测是否有适配器已经加载。
 </details>
 
 
