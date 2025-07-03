@@ -17,7 +17,7 @@ _✨ 依赖注入扩展,将依赖注入的范围从钩子扩展到其他函数 �
 <a href="https://pypi.python.org/pypi/nonebot-plugin-template">
     <img src="https://img.shields.io/pypi/v/nonebot-plugin-exdi.svg" alt="pypi">
 </a>
-<img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="python">
+<img src="https://img.shields.io/badge/python-3.9+-blue.svg" alt="python">
 
 </div>
 
