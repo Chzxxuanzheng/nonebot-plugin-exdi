@@ -4,8 +4,8 @@ from typing import Any, Callable, TypeVar, cast
 from typing_extensions import override
 from nonebot.utils import run_coro_with_shield
 from nonebot.compat import ModelField
+from exceptiongroup import ExceptionGroup
 import anyio
-import asyncio
 
 from .baseparams import current_di_base_params
 
@@ -28,26 +28,7 @@ class ExDependent(Dependent[R]):
 		params = params.copy()
 		params.update({'matcher': current_matcher.get()}) # 追加 matcher
 		
-		try:
-			# 使用 asyncio.wait_for 或者 concurrent.futures
-			from concurrent.futures import ThreadPoolExecutor
-			
-			# 创建一个新的事件循环在另一个线程中运行
-			def run_in_thread():
-				new_loop = asyncio.new_event_loop()
-				asyncio.set_event_loop(new_loop)
-				try:
-					return new_loop.run_until_complete(self.solve(**params))
-				finally:
-					new_loop.close()
-			
-			with ThreadPoolExecutor() as executor:
-				future = executor.submit(run_in_thread)
-				re, err = future.result()
-				
-		except RuntimeError:
-			# 如果没有运行中的事件循环，创建一个新的
-			re, err = asyncio.run(self.solve(**params))
+		re, err = anyio.from_thread.run(self.solve, **params) # type: ignore
 		
 		if err:
 			# If there are any exceptions, raise them as a group
