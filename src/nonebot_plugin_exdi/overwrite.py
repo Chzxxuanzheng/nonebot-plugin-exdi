@@ -1,4 +1,4 @@
-OVERWRITE_VERSION = ['2.4.2']
+OVERWRITE_VERSION = ['2.4.2', '2.4.3']
 
 def overwrite_check() -> None:
 	''' 检测是否适合覆盖，一般handle_event被适配器使用，本函数仅检测适配器加载情况 '''
